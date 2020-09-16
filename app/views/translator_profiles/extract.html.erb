@@ -1,0 +1,7 @@
+extract
+<hr /><br />
+
+<%= form_with(url: "/save", method: "get") do %>
+  <%= text_field_tag :profileurl, nil, :size => 50 %>
+  <%= submit_tag("Extract") %>
+<% end %>

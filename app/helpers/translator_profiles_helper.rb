@@ -1,0 +1,2 @@
+module TranslatorProfilesHelper
+end

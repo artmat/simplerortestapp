@@ -1,0 +1,43 @@
+save
+<hr /><br />
+
+<% if not @data.nil? %>
+  <%= form_with(scope: :profile, url: '/save', method: 'post') do %>
+    <%= label(:profile, :firstname, 'First Name: ') %>
+    <%= text_field :profile, :firstname, 'value' => @data[:firstname].strip %><br />
+
+    <%= label(:profile, :lastname, 'Last Name: ') %>
+    <%= text_field :profile, :lastname, 'value' => @data[:lastname].strip %><br />
+
+    <%= label(:profile, :country, 'Country: ') %>
+    <%= text_field :profile, :country, 'value' => @data[:country].strip %><br />
+
+    <%= label(:profile, :nativelang, 'Native Language: ') %>
+    <%= text_field :profile, :nativelang, 'value' => @data[:nativelang].strip %><br />
+
+    <%= label(:profile, :targetlangs, 'Target Language: ') %>
+    <%= text_field :profile, :targetlangs, 'value' => @data[:targetlangs].join(', ') %><br />
+
+    <%= label(:profile, :url, 'Profile URL: ') %>
+    <%= text_field :profile, :url, 'value' => @data[:url], :size => 40, :readonly => 1 %><br />
+
+    <%= submit_tag('Save') %>
+  <% end#form %>
+
+<% elsif not @profile.nil? %>
+  Just added a record for <%= @profile[:firstname] %> <%= @profile[:lastname] %><br />
+
+  <% unless  @existing_profiles.nil? %>
+    <br /><hr /><br />Here are the existing records:<br /><br />
+
+    <% @existing_profiles.each do |r| %>
+    <%= r[:firstname] %>, <%= r[:lastname] %>, <%= r[:country] %>, <%= r[:nativelang] %>, <%= r[:lang1] %>, <%= r[:lang2] %>, <%= r[:lang3] %>, <%= r[:url] %> <br />
+    <% end#each %>
+  <% end#unless %>
+
+<% else %>
+  An error has occured (maybe wrong URL or missing parameters)
+<% end#if %>
+
+<br /><hr /><br />
+Back to <a href="/extract">Extract Page</a>
